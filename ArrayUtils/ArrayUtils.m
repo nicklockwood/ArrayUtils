@@ -90,6 +90,12 @@
     return [NSArray arrayWithArray:array];
 }
 
+- (NSArray *)arrayByShufflingArray{
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
+    [array shuffle];
+    return array;
+}
+
 @end
 
 
@@ -100,6 +106,16 @@
     if ([self count])
     {
         [self removeObjectAtIndex:0];
+    }
+}
+
+- (void)shuffle{
+    for (NSUInteger i = [self count] - 1; i >= 1; i--)
+    {
+        
+        u_int32_t j = arc4random_uniform(i + 1);
+        
+        [self exchangeObjectAtIndex:j withObjectAtIndex:i];
     }
 }
 

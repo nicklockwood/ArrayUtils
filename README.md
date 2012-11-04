@@ -23,7 +23,7 @@ ArrayUtils works with both ARC and non-ARC projects. There is no need to exclude
 Thread Safety
 --------------
 
-In general, NSArray is thread safe and NSMutableArray isn't. ArrayUtils does not do anything to chnage that. You can saftely call the ArrayUtils methods on an NSArray instance from mutltiple threads, but doing so on an NSMutableArray will have unpredictable results.
+In general, NSArray is thread safe and NSMutableArray isn't. ArrayUtils does not do anything to change that. You can saftely call the ArrayUtils methods on an NSArray instance from mutltiple threads, but doing so on an NSMutableArray will have unpredictable results.
 
 
 Installation

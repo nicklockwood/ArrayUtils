@@ -42,6 +42,7 @@
 - (NSArray *)arrayByRemovingFirstObject;
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSInteger)index;
 - (NSArray *)arrayByReplacingObjectAtIndex:(NSInteger)index withObject:(id)object;
+- (NSArray *)arrayByShufflingArray;
 
 @end
 
@@ -49,5 +50,6 @@
 @interface NSMutableArray (ArrayUtils)
 
 - (void)removeFirstObject;
+- (void)shuffle;
 
 @end

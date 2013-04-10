@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.h
 //
-//  Version 1.0
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -37,11 +37,11 @@
 
 - (id)firstObject;
 - (NSArray *)arrayByRemovingObject:(id)object;
-- (NSArray *)arrayByRemovingObjectAtIndex:(NSInteger)index;
+- (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index;
 - (NSArray *)arrayByRemovingLastObject;
 - (NSArray *)arrayByRemovingFirstObject;
-- (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSInteger)index;
-- (NSArray *)arrayByReplacingObjectAtIndex:(NSInteger)index withObject:(id)object;
+- (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index;
+- (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object;
 - (NSArray *)arrayByShufflingArray;
 
 @end

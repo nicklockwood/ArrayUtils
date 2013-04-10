@@ -7,7 +7,7 @@ ArrayUtils is a collection of category methods that extend NSArray with a few mi
 Supported OS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 6.0 / Mac OS 10.8 (Xcode 4.5.1, Apple LLVM compiler 4.1)
+* Supported build target - iOS 6.1 / Mac OS 10.8 (Xcode 4.6.1, Apple LLVM compiler 4.2)
 * Earliest supported deployment target - iOS 5.0 / Mac OS 10.7
 * Earliest compatible deployment target - iOS 4.3 / Mac OS 10.6
 
@@ -23,7 +23,7 @@ ArrayUtils works with both ARC and non-ARC projects. There is no need to exclude
 Thread Safety
 --------------
 
-In general, NSArray is thread safe and NSMutableArray isn't. ArrayUtils does not do anything to change that. You can saftely call the ArrayUtils methods on an NSArray instance from mutltiple threads, but doing so on an NSMutableArray will have unpredictable results.
+In general, NSArray is thread safe and NSMutableArray isn't. ArrayUtils does not do anything to change that. You can safely call the ArrayUtils methods on an NSArray instance from multiple threads, but doing so on an NSMutableArray will have unpredictable results.
 
 
 Installation
@@ -45,7 +45,7 @@ Returns the first object in the array, or nil if the array is empty.
     
 Returns a copy of the array with the specified object removed.
     
-    - (NSArray *)arrayByRemovingObjectAtIndex:(NSInteger)index;
+    - (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index;
     
 Returns a copy of the array with the object at the specified index removed.
     
@@ -57,13 +57,17 @@ Returns a copy of the array with the last object removed. Does nothing if the ar
     
 Returns a copy of the array with the first object removed. Does nothing if the array is empty.
     
-    - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSInteger)index;
+    - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index;
     
 Returns a copy of the array with the specified object inserted at the specified index.
     
-    - (NSArray *)arrayByReplacingObjectAtIndex:(NSInteger)index withObject:(id)object;
+    - (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object;
     
 Returns a copy of the array with the object at the specified index replaced by the specified object.
+
+    - (NSArray *)arrayByShufflingArray
+
+Returns a copy of the array with the objects shuffles randomly using arc4random.
     
     
 NSMutableArray Extension Methods
@@ -74,3 +78,7 @@ ArrayUtils extends NSMutableArray with the following methods:
     - (void)removeFirstObject;
     
 Removes the first object from the array. Does nothing if the array is empty.
+
+    - (void)shuffle;
+    
+Shuffles the array randomly using arc4random.

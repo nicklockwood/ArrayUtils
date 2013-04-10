@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.m
 //
-//  Version 1.0
+//  Version 1.1
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -37,21 +37,21 @@
 
 - (id)firstObject
 {
-    return [self count]? [self objectAtIndex:0]: nil;
+    return [self count]? self[0]: nil;
 }
 
 - (NSArray *)arrayByRemovingObject:(id)object
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array removeObject:object];
-    return [NSArray arrayWithArray:array];
+    return array;
 }
 
-- (NSArray *)arrayByRemovingObjectAtIndex:(NSInteger)index
+- (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array removeObjectAtIndex:index];
-    return [NSArray arrayWithArray:array];
+    return array;
 }
 
 - (NSArray *)arrayByRemovingLastObject
@@ -60,7 +60,7 @@
     {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self];
         [array removeObjectAtIndex:[self count] - 1];
-        return [NSArray arrayWithArray:array];
+        return array;
     }
     return self;
 }
@@ -71,26 +71,27 @@
     {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self];
         [array removeObjectAtIndex:0];
-        return [NSArray arrayWithArray:array];
+        return array;
     }
     return self;
 }
 
-- (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSInteger)index
+- (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array insertObject:object atIndex:index];
-    return [NSArray arrayWithArray:array];
+    return array;
 }
 
-- (NSArray *)arrayByReplacingObjectAtIndex:(NSInteger)index withObject:(id)object
+- (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    [array replaceObjectAtIndex:index withObject:object];
-    return [NSArray arrayWithArray:array];
+    array[index] = object;
+    return array;
 }
 
-- (NSArray *)arrayByShufflingArray{
+- (NSArray *)arrayByShufflingArray
+{
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array shuffle];
     return array;
@@ -109,12 +110,11 @@
     }
 }
 
-- (void)shuffle{
-    for (NSUInteger i = [self count] - 1; i >= 1; i--)
+- (void)shuffle
+{
+    for (int i = [self count] - 1; i > 0; i--)
     {
-        
         u_int32_t j = arc4random_uniform(i + 1);
-        
         [self exchangeObjectAtIndex:j withObjectAtIndex:i];
     }
 }

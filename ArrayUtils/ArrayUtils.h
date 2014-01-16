@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.h
 //
-//  Version 1.1
+//  Version 1.2
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -35,14 +35,14 @@
 
 @interface NSArray (ArrayUtils)
 
-- (id)firstObject;
 - (NSArray *)arrayByRemovingObject:(id)object;
 - (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index;
 - (NSArray *)arrayByRemovingLastObject;
 - (NSArray *)arrayByRemovingFirstObject;
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index;
 - (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object;
-- (NSArray *)arrayByShufflingArray;
+- (NSArray *)shuffledArray;
+- (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block;
 
 @end
 

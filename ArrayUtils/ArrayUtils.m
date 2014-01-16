@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.m
 //
-//  Version 1.1
+//  Version 1.2
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -33,12 +33,10 @@
 #import "ArrayUtils.h"
 
 
-@implementation NSArray (ArrayUtils)
+#pragma GCC diagnostic ignored "-Wgnu"
 
-- (id)firstObject
-{
-    return [self count]? self[0]: nil;
-}
+
+@implementation NSArray (ArrayUtils)
 
 - (NSArray *)arrayByRemovingObject:(id)object
 {
@@ -62,7 +60,7 @@
         [array removeObjectAtIndex:[self count] - 1];
         return array;
     }
-    return self;
+    return [NSArray arrayWithArray:self];
 }
 
 - (NSArray *)arrayByRemovingFirstObject
@@ -73,7 +71,7 @@
         [array removeObjectAtIndex:0];
         return array;
     }
-    return self;
+    return [NSArray arrayWithArray:self];
 }
 
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index
@@ -90,11 +88,26 @@
     return array;
 }
 
-- (NSArray *)arrayByShufflingArray
+- (NSArray *)shuffledArray
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:self];
     [array shuffle];
     return array;
+}
+
+- (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block
+{
+    if (block)
+    {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:[self count]];
+        for (id object in self)
+        {
+            id replacement = block(object);
+            if (replacement) [array addObject:replacement];
+        }
+        return array;
+    }
+    return [NSArray arrayWithArray:self];
 }
 
 @end
@@ -112,10 +125,10 @@
 
 - (void)shuffle
 {
-    for (int i = [self count] - 1; i > 0; i--)
+    for (NSInteger i = (NSInteger)[self count] - 1; i > 0; i--)
     {
-        u_int32_t j = arc4random_uniform(i + 1);
-        [self exchangeObjectAtIndex:j withObjectAtIndex:i];
+        NSUInteger j = (NSUInteger)arc4random_uniform((NSUInteger)i + 1);
+        [self exchangeObjectAtIndex:j withObjectAtIndex:(NSUInteger)i];
     }
 }
 

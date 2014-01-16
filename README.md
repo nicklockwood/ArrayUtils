@@ -65,9 +65,13 @@ Returns a copy of the array with the specified object inserted at the specified 
     
 Returns a copy of the array with the object at the specified index replaced by the specified object.
 
-    - (NSArray *)arrayByShufflingArray
+    - (NSArray *)shuffledArray
 
 Returns a copy of the array with the objects shuffles randomly using arc4random.
+
+    - (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block
+
+Returns a new array formed by performing the specified block on each element in the current array, and returning the result. If the block returns nil for any element, it will be omitted from the resultant array. If the block argument is nil, an identical copy of the original array will be returned.
     
     
 NSMutableArray Extension Methods

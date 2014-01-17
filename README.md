@@ -77,11 +77,11 @@ Returns a new array formed by performing the specified block on each element in 
 
 Returns a copy of the array with the objects's order reverted.
 
-- (NSArray *)unionWithArray:(NSArray *)array;
+    - (NSArray *)unionWithArray:(NSArray *)array;
 
 Returns a copy of the array without duplicated objects, that might be contained by the inputed array.
 
-- (NSArray *)intersectionWithArray:(NSArray *)array;
+    - (NSArray *)intersectionWithArray:(NSArray *)array;
 
 Returns a copy of the array with only the common elements between itself and the inputed array.
     

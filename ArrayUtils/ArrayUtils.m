@@ -110,6 +110,32 @@
     return [NSArray arrayWithArray:self];
 }
 
+- (NSArray *)reverseArray
+{
+    return [[self reverseObjectEnumerator] allObjects];
+}
+
+- (NSArray *)unionWithArray:(NSArray *)array
+{
+    NSMutableArray *mutableSelf = [self mutableCopy];
+    [mutableSelf addObjectsFromArray:array];
+    
+    NSArray *uniqueArray = [[NSOrderedSet orderedSetWithArray:mutableSelf] array];
+    
+    return uniqueArray;
+}
+
+- (NSArray *)intersectionWithArray:(NSArray *)array
+{
+    NSMutableOrderedSet *mutableOrderedSet = [NSMutableOrderedSet orderedSetWithArray:self];
+    [mutableOrderedSet intersectSet:[NSSet setWithArray:array]];
+
+    NSArray *uniqueArray = [mutableOrderedSet array];
+    
+    return uniqueArray;
+}
+
+
 @end
 
 

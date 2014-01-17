@@ -77,14 +77,19 @@ Returns a new array formed by performing the specified block on each element in 
 
 Returns a copy of the array with the objects's order reverted.
 
-    - (NSArray *)unionWithArray:(NSArray *)array;
+    - (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
 
 Returns a copy of the array without duplicated objects, that might be contained in the inputed array.
 
-    - (NSArray *)intersectionWithArray:(NSArray *)array;
+    - (NSArray *)objectsInCommonWithArray:(NSArray *)array;
 
 Returns a copy of the array with only the common elements between itself and the inputed array.
+
+    - (NSArray *)uniqueObjects;
     
+Returns a copy of the array without the duplicated objects.
+
+
 NSMutableArray Extension Methods
 ---------------------------------
 

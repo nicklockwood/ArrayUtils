@@ -44,8 +44,9 @@
 - (NSArray *)shuffledArray;
 - (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block;
 - (NSArray *)reverseArray;
-- (NSArray *)unionWithArray:(NSArray *)array;
-- (NSArray *)intersectionWithArray:(NSArray *)array;
+- (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
+- (NSArray *)uniqueObjects;
+- (NSArray *)objectsInCommonWithArray:(NSArray *)array;
 
 @end
 

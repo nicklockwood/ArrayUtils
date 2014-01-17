@@ -55,5 +55,7 @@
 
 - (void)removeFirstObject;
 - (void)shuffle;
+- (void)reverse;
+- (void)mergeObjectsFromArray:(NSArray *)array;
 
 @end

@@ -161,4 +161,20 @@
     }
 }
 
+- (void)reverse
+{
+    NSArray *revertedObject = [self reverseArray];
+    [self removeAllObjects];
+
+    [self addObjectsFromArray:revertedObject];
+}
+
+- (void)mergeObjectsFromArray:(NSArray *)array
+{
+    NSArray *mergedArray= [self arrayByMergingObjectsFromArray:array];
+    [self removeAllObjects];
+    
+    [self addObjectsFromArray:mergedArray];
+}
+
 @end

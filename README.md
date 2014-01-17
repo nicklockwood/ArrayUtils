@@ -102,3 +102,11 @@ Removes the first object from the array. Does nothing if the array is empty.
     - (void)shuffle;
     
 Shuffles the array randomly using arc4random.
+
+    - (void)reverse;
+
+Reverses the order of the elements on self.
+
+    - (void)mergeObjectsFromArray:(NSArray *)array;
+
+Merges the objects from the array in self without the duplicates. 

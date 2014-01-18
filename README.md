@@ -73,7 +73,23 @@ Returns a copy of the array with the objects shuffles randomly using arc4random.
 
 Returns a new array formed by performing the specified block on each element in the current array, and returning the result. If the block returns nil for any element, it will be omitted from the resultant array. If the block argument is nil, an identical copy of the original array will be returned.
     
+    - (NSArray *)reverseArray;
+
+Returns a copy of the array with the objects's order reverted.
+
+    - (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
+
+Returns a copy of the array without duplicated objects, that might be contained in the inputed array.
+
+    - (NSArray *)objectsInCommonWithArray:(NSArray *)array;
+
+Returns a copy of the array with only the common elements between itself and the inputed array.
+
+    - (NSArray *)uniqueObjects;
     
+Returns a copy of the array without the duplicated objects.
+
+
 NSMutableArray Extension Methods
 ---------------------------------
 
@@ -86,3 +102,11 @@ Removes the first object from the array. Does nothing if the array is empty.
     - (void)shuffle;
     
 Shuffles the array randomly using arc4random.
+
+    - (void)reverse;
+
+Reverses the order of the elements on self.
+
+    - (void)mergeObjectsFromArray:(NSArray *)array;
+
+Merges the objects from the array in self without the duplicates. 

@@ -43,6 +43,10 @@
 - (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object;
 - (NSArray *)shuffledArray;
 - (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block;
+- (NSArray *)reverseArray;
+- (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
+- (NSArray *)uniqueObjects;
+- (NSArray *)objectsInCommonWithArray:(NSArray *)array;
 
 @end
 
@@ -51,5 +55,7 @@
 
 - (void)removeFirstObject;
 - (void)shuffle;
+- (void)reverse;
+- (void)mergeObjectsFromArray:(NSArray *)array;
 
 @end

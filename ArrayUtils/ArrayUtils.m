@@ -110,6 +110,35 @@
     return [NSArray arrayWithArray:self];
 }
 
+- (NSArray *)reverseArray
+{
+    return [[self reverseObjectEnumerator] allObjects];
+}
+
+- (NSArray *)uniqueObjects
+{
+    NSArray *uniqueArray = [[NSOrderedSet orderedSetWithArray:self] array];
+    
+    return uniqueArray;
+}
+
+- (NSArray *)objectsInCommonWithArray:(NSArray *)array
+{
+    NSMutableOrderedSet *mutableOrderedSet = [NSMutableOrderedSet orderedSetWithArray:self];
+    [mutableOrderedSet intersectSet:[NSSet setWithArray:array]];
+
+    NSArray *uniqueArray = [mutableOrderedSet array];
+    
+    return uniqueArray;
+}
+
+- (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array
+{
+    NSArray *mergedArray = [self arrayByAddingObjectsFromArray:array];
+    
+    return [mergedArray uniqueObjects];
+}
+
 @end
 
 
@@ -130,6 +159,22 @@
         NSUInteger j = (NSUInteger)arc4random_uniform((NSUInteger)i + 1);
         [self exchangeObjectAtIndex:j withObjectAtIndex:(NSUInteger)i];
     }
+}
+
+- (void)reverse
+{
+    NSArray *revertedObject = [self reverseArray];
+    [self removeAllObjects];
+
+    [self addObjectsFromArray:revertedObject];
+}
+
+- (void)mergeObjectsFromArray:(NSArray *)array
+{
+    NSArray *mergedArray= [self arrayByMergingObjectsFromArray:array];
+    [self removeAllObjects];
+    
+    [self addObjectsFromArray:mergedArray];
 }
 
 @end

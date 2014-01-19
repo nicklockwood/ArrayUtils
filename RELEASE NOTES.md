@@ -1,3 +1,11 @@
+Version 1.3
+
+- Added mappedArrayUsingBlock: method
+- Added reversedArray and reverse methods
+- Added arrayByMergingObjectsFromArray: and mergeObjectsFromArray: method
+- Added objectsInCommonWithArray: method
+- Added uniqueObjects and removeDuplicateObjects methods
+
 Version 1.2
 
 - Removed firstObject method since it's now available on NSArray anyway

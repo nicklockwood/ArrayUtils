@@ -73,21 +73,21 @@ Returns a copy of the array with the objects shuffles randomly using arc4random.
 
 Returns a new array formed by performing the specified block on each element in the current array, and returning the result. If the block returns nil for any element, it will be omitted from the resultant array. If the block argument is nil, an identical copy of the original array will be returned.
     
-    - (NSArray *)reverseArray;
+    - (NSArray *)reversedArray;
 
-Returns a copy of the array with the objects's order reverted.
+Returns a copy of the array with the object order reversed.
 
     - (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
 
-Returns a copy of the array without duplicated objects, that might be contained in the inputed array.
+Returns an array containing all objects from both arrays that are not found in the other (i.e the union of the two arrays). If either the original or supplied arrays already contain duplicates, these will not be removed in the merge process. You can use the `uniqueObjects` method to ensure that an array does not contain duplicates.
 
     - (NSArray *)objectsInCommonWithArray:(NSArray *)array;
 
-Returns a copy of the array with only the common elements between itself and the inputed array.
+Returns a copy of the array with only the common elements between itself and the supplied array (i.e the intersection of the two arrays).
 
     - (NSArray *)uniqueObjects;
     
-Returns a copy of the array without the duplicated objects.
+Returns an array containing only first occurence of each unique object in the array. The order is not affected.
 
 
 NSMutableArray Extension Methods
@@ -105,8 +105,12 @@ Shuffles the array randomly using arc4random.
 
     - (void)reverse;
 
-Reverses the order of the elements on self.
+Reverses the order of the array elements.
 
     - (void)mergeObjectsFromArray:(NSArray *)array;
 
-Merges the objects from the array in self without the duplicates. 
+Appends any objects from supplied array that are not already present in the array. If either the original or supplied arrays already contain duplicates, these will not be removed in the merge process. You can use the `removeDuplicateObjects` method to ensure that the array does not contain duplicates.
+
+    - (void)removeDuplicateObjects;
+    
+Removes all but the first occurence of each unique object in the array. The order is not affected.

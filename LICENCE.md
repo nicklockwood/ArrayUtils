@@ -1,6 +1,6 @@
 ArrayUtils
 
-Version 1.2, January 16th, 2014
+Version 1.3, January 19th, 2014
 
 Copyright (C) 2012 Charcoal Design
 

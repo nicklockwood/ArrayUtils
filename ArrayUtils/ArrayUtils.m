@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.m
 //
-//  Version 1.2
+//  Version 1.3
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -40,25 +40,25 @@
 
 - (NSArray *)arrayByRemovingObject:(id)object
 {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    [array removeObject:object];
-    return array;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    [copy removeObject:object];
+    return copy;
 }
 
 - (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index
 {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    [array removeObjectAtIndex:index];
-    return array;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    [copy removeObjectAtIndex:index];
+    return copy;
 }
 
 - (NSArray *)arrayByRemovingLastObject
 {
     if ([self count])
     {
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-        [array removeObjectAtIndex:[self count] - 1];
-        return array;
+        NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+        [copy removeObjectAtIndex:[self count] - 1];
+        return copy;
     }
     return [NSArray arrayWithArray:self];
 }
@@ -67,32 +67,32 @@
 {
     if ([self count])
     {
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-        [array removeObjectAtIndex:0];
-        return array;
+        NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+        [copy removeObjectAtIndex:0];
+        return copy;
     }
     return [NSArray arrayWithArray:self];
 }
 
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index
 {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    [array insertObject:object atIndex:index];
-    return array;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    [copy insertObject:object atIndex:index];
+    return copy;
 }
 
 - (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object
 {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    array[index] = object;
-    return array;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    copy[index] = object;
+    return copy;
 }
 
 - (NSArray *)shuffledArray
 {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self];
-    [array shuffle];
-    return array;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    [copy shuffle];
+    return copy;
 }
 
 - (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block
@@ -110,33 +110,28 @@
     return [NSArray arrayWithArray:self];
 }
 
-- (NSArray *)reverseArray
+- (NSArray *)reversedArray
 {
     return [[self reverseObjectEnumerator] allObjects];
 }
 
-- (NSArray *)uniqueObjects
+- (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array
 {
-    NSArray *uniqueArray = [[NSOrderedSet orderedSetWithArray:self] array];
-    
-    return uniqueArray;
+    NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
+    [copy mergeObjectsFromArray:array];
+    return copy;
 }
 
 - (NSArray *)objectsInCommonWithArray:(NSArray *)array
 {
-    NSMutableOrderedSet *mutableOrderedSet = [NSMutableOrderedSet orderedSetWithArray:self];
-    [mutableOrderedSet intersectSet:[NSSet setWithArray:array]];
-
-    NSArray *uniqueArray = [mutableOrderedSet array];
-    
-    return uniqueArray;
+    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithArray:self];
+    [set intersectSet:[NSSet setWithArray:array]];
+    return [set array];
 }
 
-- (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array
+- (NSArray *)uniqueObjects
 {
-    NSArray *mergedArray = [self arrayByAddingObjectsFromArray:array];
-    
-    return [mergedArray uniqueObjects];
+    return [[NSOrderedSet orderedSetWithArray:self] array];
 }
 
 @end
@@ -163,18 +158,21 @@
 
 - (void)reverse
 {
-    NSArray *revertedObject = [self reverseArray];
-    [self removeAllObjects];
-
-    [self addObjectsFromArray:revertedObject];
+    [self setArray:[self reverseArray]];
 }
 
 - (void)mergeObjectsFromArray:(NSArray *)array
 {
-    NSArray *mergedArray= [self arrayByMergingObjectsFromArray:array];
-    [self removeAllObjects];
-    
-    [self addObjectsFromArray:mergedArray];
+    NSSet *set = [NSSet setWithArray:self];
+    for (id object in array)
+    {
+        if (![set containsObject:object]) [self addObject:object];
+    }
+}
+
+- (void)removeDuplicateObjects
+{
+    [self setArray:[self uniqueObjects]];
 }
 
 @end

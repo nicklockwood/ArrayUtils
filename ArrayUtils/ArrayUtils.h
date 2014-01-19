@@ -1,7 +1,7 @@
 //
 //  ArrayUtils.h
 //
-//  Version 1.2
+//  Version 1.3
 //
 //  Created by Nick Lockwood on 01/03/2012.
 //  Copyright (c) 2011 Charcoal Design
@@ -43,10 +43,10 @@
 - (NSArray *)arrayByReplacingObjectAtIndex:(NSUInteger)index withObject:(id)object;
 - (NSArray *)shuffledArray;
 - (NSArray *)mappedArrayUsingBlock:(id (^)(id object))block;
-- (NSArray *)reverseArray;
+- (NSArray *)reversedArray;
 - (NSArray *)arrayByMergingObjectsFromArray:(NSArray *)array;
-- (NSArray *)uniqueObjects;
 - (NSArray *)objectsInCommonWithArray:(NSArray *)array;
+- (NSArray *)uniqueObjects;
 
 @end
 
@@ -57,5 +57,6 @@
 - (void)shuffle;
 - (void)reverse;
 - (void)mergeObjectsFromArray:(NSArray *)array;
+- (void)removeDuplicateObjects;
 
 @end

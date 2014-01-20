@@ -158,7 +158,7 @@
 
 - (void)reverse
 {
-    [self setArray:[self reverseArray]];
+    [self setArray:[self reversedArray]];
 }
 
 - (void)mergeObjectsFromArray:(NSArray *)array

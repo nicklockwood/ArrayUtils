@@ -151,7 +151,7 @@
 {
     for (NSInteger i = (NSInteger)[self count] - 1; i > 0; i--)
     {
-        NSUInteger j = (NSUInteger)arc4random_uniform((NSUInteger)i + 1);
+        NSUInteger j = (NSUInteger)arc4random_uniform((uint32_t)i + 1);
         [self exchangeObjectAtIndex:j withObjectAtIndex:(NSUInteger)i];
     }
 }
